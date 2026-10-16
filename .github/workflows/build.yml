@@ -31,9 +31,10 @@ jobs:
         export PATH=$PATH:$(go env GOPATH)/bin
         gomobile init
         cd AndroidLibXrayLite
-        gomobile bind -v -androidapi 21 -target=android -o ../V2rayNG/app/libs/libv2ray.aar .
+        go mod tidy -v
+        gomobile bind -v -androidapi 21 -ldflags="-s -w -checklinkname=0" -target=android -o ../V2rayNG/app/libs/libv2ray.aar ./
 
-    - name: Download ByeDPI library (libciadpi.so) automatically
+    - name: Download ByeDPI library (libciadpi.so)
       run: |
         mkdir -p V2rayNG/app/src/main/jniLibs/arm64-v8a
         curl -L -o V2rayNG/app/src/main/jniLibs/arm64-v8a/libciadpi.so https://github.com/dovecoteescapee/ByeByeDPI/releases/download/v0.12.0/libciadpi_arm64-v8a.so
