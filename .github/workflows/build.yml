@@ -33,6 +33,11 @@ jobs:
         cd AndroidLibXrayLite
         gomobile bind -v -androidapi 21 -target=android -o ../V2rayNG/app/libs/libv2ray.aar .
 
+    - name: Download ByeDPI library (libciadpi.so) automatically
+      run: |
+        mkdir -p V2rayNG/app/src/main/jniLibs/arm64-v8a
+        curl -L -o V2rayNG/app/src/main/jniLibs/arm64-v8a/libciadpi.so https://github.com/dovecoteescapee/ByeByeDPI/releases/download/v0.12.0/libciadpi_arm64-v8a.so
+
     - name: Build Debug APK
       run: |
         cd V2rayNG
